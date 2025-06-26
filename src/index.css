@@ -1,0 +1,60 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+	themes : light --default;
+}
+@plugin "daisyui/theme" {
+ name: "fakebook";
+ default: true;
+ prefersdark: false;
+ color-scheme: light;
+
+ /* Base background and text */
+ --color-base-100: #ffffff;   /* White */
+ --color-base-200: #F0F2F5;   /* Light gray background */
+ --color-base-300: #E4E6EB;   /* Slightly darker gray */
+ --color-base-content: #1C1E21; /* Almost black text */
+
+ /* Primary: Facebook Blue */
+ --color-primary: #1877F2;          /* Facebook Blue */
+ --color-primary-focus: #1464D1;    /* Darker blue for hover/focus */
+ --color-primary-content: #ffffff;  /* White text on primary */
+
+ /* Secondary: Green action button (like sign up) */
+ --color-secondary: #42B72A;
+ --color-secondary-focus: #36A420;
+ --color-secondary-content: #ffffff;
+
+ /* Accent: Darker blue for links or hovers */
+ --color-accent: #385898;
+ --color-accent-focus: #314B81;
+ --color-accent-content: #ffffff;
+
+ /* Neutral: Gray for secondary/primary text */
+ --color-neutral: #65676B;
+ --color-neutral-focus: #1C1E21;
+ --color-neutral-content: #ffffff;
+
+ /* Status colors */
+ --color-info: #1877F2;
+ --color-success: #42B72A;
+ --color-warning: #F7B928;
+ --color-error: #FA383E;
+
+ /* Border radius */
+ --rounded-box: 0.5rem;
+ --rounded-btn: 0.25rem;
+ --rounded-badge: 1.9rem;
+
+ /* Animation durations */
+ --animation-btn: 0.25s;
+ --animation-input: 0.2s;
+
+ /* Button behavior */
+ --btn-text-case: none;
+ --btn-focus-scale: 0.98;
+ --border-btn: 1px;
+
+ /* Tabs */
+ --tab-border: 2px;
+ --tab-radius: 0.5rem;
+}
