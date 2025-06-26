@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FakebookTitle, FakebookLogo } from '../icons'
+import Register from './Register'
 
 function Login() {
+	const [resetForm, setResetForm] = useState(false)
+	const hdlClose = () => {
+		console.log('dialog close...')
+		setResetForm(prv=>!prv)
+	}
 	return (
 		<>
-			<div className="h-[700px] pt-20 pb-28 ">
+			<div className="h-[700px] pt-20 pb-28">
 				<div className="p-5 mx-auto max-w-screen-lg min-h-[540px] flex justify-between max-md:flex-col">
 					<div className='flex flex-col max-md:items-center max-md:text-center gap-4 mt-20 basis-3/5 '>
 						<div className="text-4xl"> <FakebookTitle /> </div>
@@ -27,21 +33,21 @@ function Login() {
 									<button className='btn btn-primary text-xl'>Login</button>
 									<p className="text-center cursor-pointer opacity-70">Forgotten password</p>
 									<div className="divider my-0"></div>
-									<button className='btn btn-secondary text-lg'>Create new account</button>
+									<button type="button" className='btn btn-secondary text-lg'
+										onClick={()=>document.getElementById('register-form').showModal()}
+									>Create new account</button>
 								</div>
 							</form>
 						</div>
 					</div>
 				</div>
 			</div>
-			<dialog id="my_modal_3" className="modal">
+			<dialog id="register-form" className="modal" onClose={hdlClose}>
 				<div className="modal-box">
+					<Register resetForm={resetForm}/>
 					<form method="dialog">
-						{/* if there is a button in form, it will close the modal */}
 						<button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
 					</form>
-					<h3 className="font-bold text-lg">Hello!</h3>
-					<p className="py-4">Press ESC key or click on ✕ button to close</p>
 				</div>
 			</dialog>
 		</>
