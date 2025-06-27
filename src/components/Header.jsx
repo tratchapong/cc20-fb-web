@@ -1,6 +1,7 @@
 import { Link } from 'react-router'
 import { FakebookLogo, FriendsIcon, HomeIcon, MenuIcon, MessengerIcon, NotificationIcon, PlayIcon, SearchIcon, ShopIcon } from '../icons'
 import useUserStore from '../stores/userStore'
+import Avatar from './Avatar'
 
 function Header() {
 	const logout = useUserStore(state => state.logout)
@@ -44,6 +45,8 @@ function Header() {
 						<NotificationIcon className='w-5' />
 					</div>
 				</div>
+				<Avatar className='w-11' imgSrc='https://www.svgrepo.com/show/307208/batman-emotions-hero-superhero.svg'/>
+
 			</div>
 		</div>
 	)
