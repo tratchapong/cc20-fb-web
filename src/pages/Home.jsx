@@ -1,8 +1,13 @@
 import React from 'react'
+import SidebarMenu from '../components/SidebarMenu'
 
 function Home() {
 	return (
-		<div>User Home</div>
+		<>
+		<SidebarMenu />
+		{/* <div>Post Container</div>
+		<div>Sidebar Contact</div> */}
+		</>
 	)
 }
 

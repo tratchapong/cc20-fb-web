@@ -30,7 +30,7 @@ function Header() {
 			</div>
 
 			{/* Right + Dropdown Menu */}
-			<div className='flex-1 flex gap-3 justify-end'>
+			<div className='flex-1 flex gap-3 justify-end items-center'>
 				<div className="avatar justify-center items-center">
 					<div className="w-10 h-10 rounded-full !flex justify-center items-center bg-gray-300 hover:bg-gray-400">
 						<MenuIcon className='w-5' />
