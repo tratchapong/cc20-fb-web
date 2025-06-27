@@ -2,24 +2,32 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { loginSchema } from '../utils/validators'
-
-
 import { FakebookTitle, FakebookLogo } from '../icons'
 import Register from './Register'
+import useUserStore from '../stores/userStore'
+import { toast } from 'react-toastify'
 
 function Login() {
 	const [resetForm, setResetForm] = useState(false)
+	const login = useUserStore(state => state.login)
+
 	const { handleSubmit, register, formState: { errors, isSubmitting }, reset } = useForm({
 		resolver: yupResolver(loginSchema),
 	})
 	const hdlClose = () => {
-		``
 		console.log('dialog close...')
 		setResetForm(prv => !prv)
 	}
 	const hdlLogin = async data => {
-		await new Promise(resolve => setTimeout(resolve, 2000))
-		alert(JSON.stringify(data, null, 2))
+		try {
+			await new Promise(resolve => setTimeout(resolve, 1000))
+			const resp = await login(data)
+			toast.success(resp.data.message)
+			// localStorage.setItem('user',JSON.stringify( resp.data.user))
+		} catch (err) {
+			const errMsg = err.response?.data?.error || err.message
+			toast(errMsg)
+		}
 	}
 
 	return (
