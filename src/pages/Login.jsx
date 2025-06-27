@@ -22,7 +22,7 @@ function Login() {
 		try {
 			await new Promise(resolve => setTimeout(resolve, 1000))
 			const resp = await login(data)
-			toast.success(resp.data.message)
+			// toast.success(resp.data.message)
 			// localStorage.setItem('user',JSON.stringify( resp.data.user))
 		} catch (err) {
 			const errMsg = err.response?.data?.error || err.message

@@ -5,6 +5,7 @@ import Avatar from './Avatar'
 
 function Header() {
 	const logout = useUserStore(state => state.logout)
+	const user = useUserStore(state => state.user)
 
 	return (
 		<div className='flex justify-between px-3 h-14 w-full shadow-lg bg-white fixed top-0 z-10'>
@@ -12,7 +13,7 @@ function Header() {
 			<div className="flex-1 flex gap-2 items-center pe-2">
 				<FakebookLogo className='w-12' />
 				<label className="input rounded-full">
-					<input  placeholder="Search" />
+					<input placeholder="Search" />
 					<SearchIcon className="w-5 opacity-60" />
 				</label>
 			</div>
@@ -45,7 +46,19 @@ function Header() {
 						<NotificationIcon className='w-5' />
 					</div>
 				</div>
-				<Avatar menu className='w-11' imgSrc='https://www.svgrepo.com/show/307208/batman-emotions-hero-superhero.svg'/>
+				<div className="dropdown dropdown-end">
+					<div tabIndex={0} role="button" className="btn m-1 btn-circle">
+						<Avatar menu right='-10' bottom='-10'
+							imgSrc={user.profileImage}
+						/>
+					</div>
+					<ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+						<li><Link to='/profile'>Profile</Link></li>
+						<li><a onClick={logout}>Logout</a></li>
+					</ul>
+				</div>
+
+				{/* <Avatar menu className='w-11' imgSrc='https://www.svgrepo.com/show/307208/batman-emotions-hero-superhero.svg'/> */}
 
 			</div>
 		</div>
