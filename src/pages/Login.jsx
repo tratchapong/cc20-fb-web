@@ -1,13 +1,25 @@
 import React, { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { loginSchema } from '../utils/validators'
+
+
 import { FakebookTitle, FakebookLogo } from '../icons'
 import Register from './Register'
 
 function Login() {
 	const [resetForm, setResetForm] = useState(false)
-	const hdlClose = () => {
+	const {handleSubmit, register, formState: {errors, isSubmitting}, reset} = useForm({
+		resolver : yupResolver(loginSchema),
+	})
+ 	const hdlClose = () => {``
 		console.log('dialog close...')
 		setResetForm(prv=>!prv)
 	}
+	const hdlLogin = data => {
+		alert(JSON.stringify(data,null,2))
+	}
+	
 	return (
 		<>
 			<div className="h-[700px] pt-20 pb-28">
@@ -20,16 +32,20 @@ function Login() {
 					</div>
 					<div className='flex flex-1 bg-white'>
 						<div className="card bg-base-100 w-full h-[350px] shadow-xl mt-8">
-							<form>
+							<form onSubmit={handleSubmit(hdlLogin)}>
 								<div className="card-body">
 									<input type='text'
 										className='input w-full'
 										placeholder='E-mail or Phone number'
+										{...register('identity')}
 									/>
+									{errors.identity?.message && <p className='text-sm text-error'>{errors.identity.message}</p>}
 									<input type='password'
 										className='input w-full'
 										placeholder='password'
-									/>
+										{...register('password')}
+										/>
+									{errors.password?.message && <p className='text-sm text-error'>{errors.password.message}</p>}
 									<button className='btn btn-primary text-xl'>Login</button>
 									<p className="text-center cursor-pointer opacity-70">Forgotten password</p>
 									<div className="divider my-0"></div>
