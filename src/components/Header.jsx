@@ -45,7 +45,7 @@ function Header() {
 						<NotificationIcon className='w-5' />
 					</div>
 				</div>
-				<Avatar className='w-11' imgSrc='https://www.svgrepo.com/show/307208/batman-emotions-hero-superhero.svg'/>
+				<Avatar menu className='w-11' imgSrc='https://www.svgrepo.com/show/307208/batman-emotions-hero-superhero.svg'/>
 
 			</div>
 		</div>
