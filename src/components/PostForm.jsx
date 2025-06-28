@@ -6,7 +6,7 @@ import AddPicture from './AddPicture'
 
 function PostForm() {
   const user = useUserStore(state => state.user)
-  const [addPic, setAddPic] = useState(true)
+  const [addPic, setAddPic] = useState(false)
   return (
     <div className='flex flex-col gap-2'>
       <h3 className="text-xl text-center">Create post</h3>
