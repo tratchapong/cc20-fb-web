@@ -14,7 +14,7 @@ function PostItem() {
 							<p className="text-xs opacity-70">1d ago</p>
 						</div>
 					</div>
-					<div className="flex gap-2 items-center">
+					<div className="flex gap-2 items-start -mt-3">
 						<div className="dropdown">
 							<div tabIndex={0} role='button'>
 								<div className="avatar items-center cursor-pointer">
