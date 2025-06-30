@@ -1,16 +1,19 @@
 import { create } from 'zustand'
 import { createComment, createLike, createPost, deletePost, getAllPosts, updatePost } from '../api/postApi'
+import useUserStore from './userStore'
 
 const usePostStore = create((set, get) => ({
 	posts: [],
 	currentPost: null,
 	loading: false,
-	createPost: async (body, token, user) => {
-		const rs = await createPost(body, token)
-		console.log(rs.data)
+	createPost: async (body) => {
+		set({loading: true})
+		const rs = await createPost(body, useUserStore.getState().token)
 		set(state => ({
-			posts: [{ ...rs.data.result, user, likes: [], comments: [] }, ...state.posts]
+			loading: false,
+			posts: [{ ...rs.data.result, user:useUserStore.getState().user , likes: [], comments: [] }, ...state.posts]
 		}))
+		return rs
 	},
 	getAllPosts: async (token) => {
 		set({ loading: true })

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const postApi = axios.create({
-  baseURL : 'http://localhost:8899'
+  baseURL : 'http://localhost:8899/api/post'
 })
 
 const addToken = (token) => ({
@@ -10,13 +10,13 @@ const addToken = (token) => ({
   }
 })
 
-export const createPost = (body, token) => postApi.post('/post', body, addToken(token))
+export const createPost = (body, token) => postApi.post('/', body, addToken(token))
 
-export const getAllPosts = (token) => postApi.get('/post', addToken(token))
+export const getAllPosts = (token) => postApi.get('/', addToken(token))
 
-export const deletePost = (postId, token)=> postApi.delete(`/post/${postId}`,addToken(token))
+export const deletePost = (postId, token)=> postApi.delete(`/${postId}`,addToken(token))
 
-export const updatePost = (postId, token, body)=> postApi.put(`post/${postId}`, body, addToken(token))
+export const updatePost = (postId, token, body)=> postApi.put(`/${postId}`, body, addToken(token))
 
 export const createComment = (body, token) => postApi.post('/comment', body, addToken(token))
 
