@@ -2,10 +2,11 @@ import { useState } from "react"
 import { PhotoIcon2 } from "../icons"
 import useUserStore from "../stores/userStore"
 import Avatar from "./Avatar"
+import AddPicture from "./AddPicture"
 
 function PostForm() {
 	const user = useUserStore(state => state.user)
-	const [addPic, setAddPic] = useState(true)
+	const [addPic, setAddPic] = useState(false)
 	return (
 		<div className="flex flex-col gap-2">
 			<h3 className="text-xl text-center">Create Post</h3>
@@ -27,7 +28,7 @@ function PostForm() {
 				placeholder={ `what do you think? ${user.firstName}` }
 			></textarea>
 			{ addPic &&
-				<div className="text-4xl p-10 border">Add Picture</div>
+				<AddPicture />
 			}
 			<div className="flex justify-between border rounded-lg p-2 items-center cursor-pointer">
 				<p>add with your post</p>
