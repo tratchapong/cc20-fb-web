@@ -13,6 +13,8 @@ function PostItem({ post }) {
 	const getAllPosts = usePostStore(state => state.getAllPosts)
 	const deletePost = usePostStore(state => state.deletePost)
 	const setCurrentPost = usePostStore(state => state.setCurrentPost)
+	const createLike = usePostStore(state=>state.createLike)
+	const unLike = usePostStore(state=>state.unLike)
 
 	const hdlShowEditModal = () => {
 		setCurrentPost(post)
@@ -27,6 +29,16 @@ function PostItem({ post }) {
 			toast.error(errMsg)
 		}
 	}
+	const haveLike = () => post.likes.some(el => el.userId === user.id)
+	const hdlLikeClick = async () => {
+		if(haveLike()) {
+			await unLike(post.id)
+		}else{
+			await createLike({postId : post.id})
+		}
+
+	}
+
 	return (
 		<div className='card  bg-base-100 shadow-xl'>
 			<div className="card-body">
@@ -84,7 +96,7 @@ function PostItem({ post }) {
 				{/* Like, comment, share button */}
 				<div className="flex gap-3 justify-between">
 					<div className={`flex gap-3 justify-center items-center cursor-pointer rounded-lg py-2 flex-1 hover:bg-gray-300
-						 ${Math.random() > 0.5 ? 'bg-blue-300' : ''}`}>
+						 ${haveLike() ? 'bg-blue-300' : ''}`} onClick={hdlLikeClick} >
 						Like
 					</div>
 					<div className="flex gap-3 justify-center items-center cursor-pointer rounded-lg py-2 flex-1 hover:bg-gray-300">
