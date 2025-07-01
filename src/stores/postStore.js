@@ -1,8 +1,6 @@
 import { create } from 'zustand'
-import { createPost, deletePost, getAllPosts, updatePost, createLike, unLike } from '../api/postApi'
+import { createPost, deletePost, getAllPosts, updatePost, createLike, unLike, createComment } from '../api/postApi'
 import useUserStore from './userStore'
-
-// let token = useUserStore.getState().token
 
 const usePostStore = create((set, get) => ({
 	posts: [],
@@ -47,10 +45,16 @@ const usePostStore = create((set, get) => ({
 	},
 	unLike: async (id) => {
 		const token = useUserStore.getState().token
-		const rs = await unLike(id, token)
+		const resp = await unLike(id, token)
 		get().getAllPosts()
 		return resp
 	},
+	createComment: async (body) => {
+		const token = useUserStore.getState().token
+		const resp = await createComment(body, token)
+		get().getAllPosts()
+		return resp
+	}
 }))
 
 export default usePostStore
