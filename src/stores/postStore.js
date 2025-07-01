@@ -7,7 +7,9 @@ const usePostStore = create( (set,get) => ({
 	loading: false,
 	createPost : async (body, token, user) => {
 		set({ loading : true})
-		const rs = await createPost(body, token)
+		const resp = await createPost(body, token)
+		set({ loading : false})
+		return resp
 	}
 }))
 
