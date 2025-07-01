@@ -17,6 +17,7 @@
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.58.1",
     "react-router": "^7.6.2",
+    "react-timeago": "^8.2.0",
     "react-toastify": "^11.0.5",
     "tailwindcss": "^4.1.10",
     "yup": "^1.6.1",

@@ -1,5 +1,6 @@
 import {create} from 'zustand'
 import { createPost, getAllPosts } from '../api/postApi'
+import useUserStore from './userStore'
 
 const usePostStore = create( (set,get) => ({
 	posts: [],
@@ -13,7 +14,8 @@ const usePostStore = create( (set,get) => ({
 	},
 	getAllPosts : async (token) => {
 		await new Promise(rs=>setTimeout(rs,2000) )
-		const resp = await getAllPosts(token)
+		let tk = useUserStore.getState().token
+		const resp = await getAllPosts(tk)
 		set({posts: resp.data.posts})
 		return resp
 	}
