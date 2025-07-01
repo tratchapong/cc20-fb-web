@@ -23,9 +23,6 @@ function PostForm() {
 			if (file) {
 				body.append('image', file)
 			}
-			// for(let el of body ) {
-			// 	console.log(el)
-			// }
 			const resp = await createPost(body, token, user)
 			toast(resp.data.message)
 			document.getElementById('postform-modal').close()

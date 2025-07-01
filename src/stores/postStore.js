@@ -1,5 +1,5 @@
 import {create} from 'zustand'
-import { createPost } from '../api/postApi'
+import { createPost, getAllPosts } from '../api/postApi'
 
 const usePostStore = create( (set,get) => ({
 	posts: [],
@@ -9,6 +9,12 @@ const usePostStore = create( (set,get) => ({
 		set({ loading : true})
 		const resp = await createPost(body, token)
 		set({ loading : false})
+		return resp
+	},
+	getAllPosts : async (token) => {
+		await new Promise(rs=>setTimeout(rs,2000) )
+		const resp = await getAllPosts(token)
+		set({posts: resp.data.posts})
 		return resp
 	}
 }))

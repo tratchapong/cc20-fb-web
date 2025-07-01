@@ -10,4 +10,4 @@ const addToken = (token) => ({
 
 export const createPost = (body,token) => postApi.post('/', body ,addToken(token))
 
-export const getAllPost = (token) => postApi.get('/', addToken(token))
+export const getAllPosts = (token) => postApi.get('/', addToken(token))
