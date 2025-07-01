@@ -4,19 +4,31 @@ import { CloseIcon, LikeIcon, ThreeDotIcon } from '../icons'
 import useUserStore from '../stores/userStore'
 import usePostStore from '../stores/postStore'
 import TimeAgo from 'react-timeago'
+import { toast } from 'react-toastify'
 
 function PostItem({ post }) {
-	console.log(post)
-	const user = useUserStore(state=>state.user)
-	const token = useUserStore(state=>state.token)
-	const getAllPosts = usePostStore(state=>state.getAllPosts)
+	// console.log(post)
+	const user = useUserStore(state => state.user)
+	const token = useUserStore(state => state.token)
+	const getAllPosts = usePostStore(state => state.getAllPosts)
+	const deletePost = usePostStore(state => state.deletePost)
 
+	const hdlShowEditModal = () => { alert(999) }
+	const hdlDelete = async () => {
+		try {
+			const resp = await deletePost(post.id)
+			toast.success(resp.data.message)
+		} catch (err) {
+			const errMsg = err.response?.data?.error || err.message
+			toast.error(errMsg)
+		}
+	}
 	return (
 		<div className='card  bg-base-100 shadow-xl'>
 			<div className="card-body">
 				<div className="flex justify-between">
 					<div className="flex gap-3">
-						<Avatar className='w-11 rounded-full' imgSrc={post.user.profileImage}/>
+						<Avatar className='w-11 rounded-full' imgSrc={post.user.profileImage} />
 						<div className="flex flex-col">
 							<p>{post.user.firstName} {post.user.lastName}</p>
 							<p className="text-xs opacity-70">
@@ -34,8 +46,8 @@ function PostItem({ post }) {
 								</div>
 							</div>
 							<ul tabIndex={0} className='dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow'>
-								<li> <a>Edit</a> </li>
-								<li> <a>Delete</a> </li>
+								<li onClick={hdlShowEditModal}> <a>Edit</a> </li>
+								<li onClick={hdlDelete}> <a>Delete</a> </li>
 							</ul>
 						</div>
 						<div className="avatar items-center cursor-pointer">
@@ -46,7 +58,7 @@ function PostItem({ post }) {
 					</div>
 				</div>
 				<p>{post.message}</p>
-				{post.image && 
+				{post.image &&
 					<img src={post.image} className='p-4 max-h-[200px] object-contain' />
 				}
 
@@ -66,7 +78,7 @@ function PostItem({ post }) {
 				{/* Like, comment, share button */}
 				<div className="flex gap-3 justify-between">
 					<div className={`flex gap-3 justify-center items-center cursor-pointer rounded-lg py-2 flex-1 hover:bg-gray-300
-						 ${Math.random()>0.5 ? 'bg-blue-300' : ''}`}>
+						 ${Math.random() > 0.5 ? 'bg-blue-300' : ''}`}>
 						Like
 					</div>
 					<div className="flex gap-3 justify-center items-center cursor-pointer rounded-lg py-2 flex-1 hover:bg-gray-300">
