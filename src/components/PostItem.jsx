@@ -12,8 +12,12 @@ function PostItem({ post }) {
 	const token = useUserStore(state => state.token)
 	const getAllPosts = usePostStore(state => state.getAllPosts)
 	const deletePost = usePostStore(state => state.deletePost)
+	const setCurrentPost = usePostStore(state => state.setCurrentPost)
 
-	const hdlShowEditModal = () => { alert(999) }
+	const hdlShowEditModal = () => {
+		setCurrentPost(post)
+		document.getElementById('editform-modal').showModal()
+	}
 	const hdlDelete = async () => {
 		try {
 			const resp = await deletePost(post.id)
@@ -37,19 +41,21 @@ function PostItem({ post }) {
 						</div>
 					</div>
 					<div className="flex gap-2 items-center -mt-8">
-						<div className="dropdown">
-							<div tabIndex={0} role='button'>
-								<div className="avatar items-center cursor-pointer">
-									<div className="w-10 h-10 rounded-full !flex justify-center items-center hover:bg-gray-200">
-										<ThreeDotIcon className='w-6' />
+						{post.userId === user.id && (
+							<div className="dropdown">
+								<div tabIndex={0} role='button'>
+									<div className="avatar items-center cursor-pointer">
+										<div className="w-10 h-10 rounded-full !flex justify-center items-center hover:bg-gray-200">
+											<ThreeDotIcon className='w-6' />
+										</div>
 									</div>
 								</div>
+								<ul tabIndex={0} className='dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow'>
+									<li onClick={hdlShowEditModal}> <a>Edit</a> </li>
+									<li onClick={hdlDelete}> <a>Delete</a> </li>
+								</ul>
 							</div>
-							<ul tabIndex={0} className='dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow'>
-								<li onClick={hdlShowEditModal}> <a>Edit</a> </li>
-								<li onClick={hdlDelete}> <a>Delete</a> </li>
-							</ul>
-						</div>
+						)}
 						<div className="avatar items-center cursor-pointer">
 							<div className="w-10 h-10 rounded-full !flex justify-center items-center hover:bg-gray-200">
 								<CloseIcon className='w-6' />

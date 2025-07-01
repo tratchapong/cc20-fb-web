@@ -21,18 +21,18 @@ const usePostStore = create( (set,get) => ({
 	},
 	getAllPosts : async () => {
 		// await new Promise(rs=>setTimeout(rs,2000) )
-		let token = useUserStore.getState().token
+		const token = useUserStore.getState().token
 		const resp = await getAllPosts(token)
 		set({posts: resp.data.posts})
 		return resp
 	},
 	deletePost : async (id) => {
-		let token = useUserStore.getState().token
+		const token = useUserStore.getState().token
 		const resp = await deletePost(id,token)
 		get().getAllPosts()
 		return resp
-	}
-	
+	},
+	setCurrentPost : (post) => set({ currentPost: post})
 }))
 
 export default usePostStore
