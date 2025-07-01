@@ -12,9 +12,9 @@ const usePostStore = create( (set,get) => ({
 		set({ loading : true})
 		const resp = await createPost(body, token)
 		console.log(resp.data.result)
-		set({ loading : false})
-		// get().getAllPosts()
+				// get().getAllPosts()
 		set( state => ({
+			loading: false,
 			posts: [ { ...resp.data.result, user, likes: [], comments:[] },...state.posts]
 		}))
 		return resp
