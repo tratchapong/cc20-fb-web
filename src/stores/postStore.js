@@ -1,5 +1,5 @@
 import {create} from 'zustand'
-import { createPost, deletePost, getAllPosts } from '../api/postApi'
+import { createPost, deletePost, getAllPosts, updatePost } from '../api/postApi'
 import useUserStore from './userStore'
 
 // let token = useUserStore.getState().token
@@ -32,7 +32,13 @@ const usePostStore = create( (set,get) => ({
 		get().getAllPosts()
 		return resp
 	},
-	setCurrentPost : (post) => set({ currentPost: post})
+	setCurrentPost : (post) => set({ currentPost: post}),
+	updatePost : async (id, body) => {
+		const token = useUserStore.getState().token
+		const resp = await updatePost(id, body, token)
+		get().getAllPosts()
+		return resp
+	}
 }))
 
 export default usePostStore
