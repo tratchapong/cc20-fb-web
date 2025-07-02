@@ -6,26 +6,29 @@ import UserLayout from '../layouts/UserLayout'
 // import Home from '../pages/Home'
 // import Friends from '../pages/Friends'
 // import Profile from '../pages/Profile'
+// import Advertising from '../pages/Advertising'
 
 const Login = lazy( ()=> import('../pages/Login') )
 const Home = lazy( ()=> import('../pages/Home') )
 const Friends = lazy( ()=> import('../pages/Friends') )
 const Profile = lazy( ()=> import('../pages/Profile') )
+const Advertising = lazy( ()=> import('../pages/Advertising') )
+const RedirectToHome = lazy( ()=> import('../pages/RedirectToHome'))
 
 const guestRouter = createBrowserRouter([
-	{ path: '/', element: <Login /> },
-	{ path: '/ads', element: <p>Advertising</p> },
-	{ path: '*', element: <Navigate to='/' /> },
+	{ path: '/', Component: Login  },
+	{ path: '/ads', Component: Advertising  },
+	{ path: '*', Component: <RedirectToHome /> },
 ])
 
 const userRouter = createBrowserRouter([
 	{
-		path: '/', element: <UserLayout />,
+		path: '/', Component: UserLayout,
 		children: [
-			{ index: true, element: <Home /> },
-			{ path: 'friends', element: <Friends /> },
-			{ path: 'profile', element: <Profile /> },
-			{ path: '*', element: <Navigate to='/' /> },
+			{ index: true, Component: Home },
+			{ path: 'friends', Component: Friends },
+			{ path: 'profile', Component: Profile  },
+			{ path: '*', Component: <RedirectToHome /> },
 		]
 	},
 
