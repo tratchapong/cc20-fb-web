@@ -18,7 +18,7 @@ const RedirectToHome = lazy( ()=> import('../pages/RedirectToHome'))
 const guestRouter = createBrowserRouter([
 	{ path: '/', Component: Login  },
 	{ path: '/ads', Component: Advertising  },
-	{ path: '*', Component: <RedirectToHome /> },
+	{ path: '*', Component: RedirectToHome },
 ])
 
 const userRouter = createBrowserRouter([
@@ -28,7 +28,7 @@ const userRouter = createBrowserRouter([
 			{ index: true, Component: Home },
 			{ path: 'friends', Component: Friends },
 			{ path: 'profile', Component: Profile  },
-			{ path: '*', Component: <RedirectToHome /> },
+			{ path: '*', Component: RedirectToHome },
 		]
 	},
 
