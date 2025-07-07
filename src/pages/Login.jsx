@@ -32,7 +32,7 @@ function Login() {
 
 	return (
 		<>
-			<div className="h-[700px] pt-20 pb-28">
+			<div className="h-[700px] pt-20 pb-28 bg-base-200">
 				<div className="p-5 mx-auto max-w-screen-lg min-h-[540px] flex justify-between max-md:flex-col">
 					<div className='flex flex-col max-md:items-center max-md:text-center gap-4 mt-20 basis-3/5 '>
 						<div className="text-4xl"> <FakebookTitle /> </div>
@@ -40,7 +40,7 @@ function Login() {
 							Fakebook helps you connect and share with people in your life.
 						</h2>
 					</div>
-					<div className='flex flex-1 bg-white'>
+					<div className='flex flex-1'>
 						<div className="card bg-base-100 w-full h-[350px] shadow-xl mt-8">
 							<form onSubmit={handleSubmit(hdlLogin)}>
 								<fieldset disabled={isSubmitting}>
