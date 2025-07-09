@@ -30,15 +30,14 @@ function PostItem({ post }) {
 			toast.error(errMsg)
 		}
 	}
-	const haveLike = () => post.likes.some(el => el.userId === user.id)
+	const haveLike = post.likes.some(el => el.userId === user.id)
 	
 	const hdlLikeClick = async () => {
-		if(haveLike()) {
+		if(haveLike) {
 			await unLike(post.id)
 		}else{
 			await createLike({postId : post.id})
 		}
-
 	}
 
 	return (
@@ -98,7 +97,7 @@ function PostItem({ post }) {
 				{/* Like, comment, share button */}
 				<div className="flex gap-3 justify-between">
 					<div className={`flex gap-3 justify-center items-center cursor-pointer rounded-lg py-2 flex-1 hover:bg-gray-300
-						 ${haveLike() ? 'bg-blue-300' : ''}`} onClick={hdlLikeClick} >
+						 ${haveLike ? 'bg-blue-300' : ''}`} onClick={hdlLikeClick} >
 						Like
 					</div>
 					<div className="flex gap-3 justify-center items-center cursor-pointer rounded-lg py-2 flex-1 hover:bg-gray-300">
