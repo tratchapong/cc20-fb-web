@@ -6,9 +6,9 @@ const usePostStore = create((set, get) => ({
 	posts: [],
 	currentPost: null, // for edit 
 	loading: false,
-	createPost: async (body, token, user) => {
+	createPost: async (body, user) => {
 		set({ loading: true })
-		const resp = await createPost(body, token)
+		const resp = await createPost(body)
 		console.log(resp.data.result)
 		// get().getAllPosts()
 		set(state => ({
@@ -19,39 +19,33 @@ const usePostStore = create((set, get) => ({
 	},
 	getAllPosts: async () => {
 		// await new Promise(rs=>setTimeout(rs,2000) )
-		const token = useUserStore.getState().token
-		const resp = await getAllPosts(token)
+		const resp = await getAllPosts()
 		set({ posts: resp.data.posts })
 		return resp
 	},
 	deletePost: async (id) => {
-		const token = useUserStore.getState().token
-		const resp = await deletePost(id, token)
+		const resp = await deletePost(id)
 		get().getAllPosts()
 		return resp
 	},
 	setCurrentPost: (post) => set({ currentPost: post }),
 	updatePost: async (id, body) => {
-		const token = useUserStore.getState().token
-		const resp = await updatePost(id, body, token)
+		const resp = await updatePost(id, body)
 		get().getAllPosts()
 		return resp
 	},
 	createLike: async (body) => {
-		const token = useUserStore.getState().token
-		const resp = await createLike(body, token)
+		const resp = await createLike(body)
 		get().getAllPosts()
 		return resp
 	},
 	unLike: async (id) => {
-		const token = useUserStore.getState().token
-		const resp = await unLike(id, token)
+		const resp = await unLike(id)
 		get().getAllPosts()
 		return resp
 	},
 	createComment: async (body) => {
-		const token = useUserStore.getState().token
-		const resp = await createComment(body, token)
+		const resp = await createComment(body)
 		get().getAllPosts()
 		return resp
 	}

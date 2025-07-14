@@ -1,30 +1,29 @@
 import axios from 'axios'
 
+
 const postApi = axios.create({
-	baseURL : 'http://localhost:8899/api/post'
-})
-const likeApi = axios.create({
-	baseURL : 'http://localhost:8899/api/like'
-})
-const commentApi = axios.create({
-	baseURL : 'http://localhost:8899/api/comment'
+	baseURL : 'http://localhost:8899/api'
 })
 
 
-const addToken = (token) => ({
-	headers : { Authorization : `Bearer ${token}`}
+postApi.interceptors.request.use( config => {
+	const userState = JSON.parse(localStorage.getItem('userState'))
+	const token = userState.state.token
+	if(token) config.headers.Authorization =  `Bearer ${token}`
+	return config
 })
 
-export const createPost = (body,token) => postApi.post('/', body ,addToken(token))
 
-export const getAllPosts = (token) => postApi.get('/', addToken(token))
+export const createPost = (body) => postApi.post('/post', body )
 
-export const deletePost = (id, token) => postApi.delete(`/${id}`, addToken(token))
+export const getAllPosts = () => postApi.get('/post')
 
-export const updatePost = (id, body, token) => postApi.put(`${id}`,body, addToken(token))
+export const deletePost = (id) => postApi.delete(`/post/${id}`)
 
-export const createLike = (body, token)=>likeApi.post('/', body, addToken(token))
+export const updatePost = (id, body) => postApi.put(`/post/${id}`,body)
 
-export const unLike = (id, token)=> likeApi.delete(`/${id}`, addToken(token))
+export const createLike = (body)=>postApi.post('/like', body)
 
-export const createComment = (body, token) => commentApi.post('/', body, addToken(token))
+export const unLike = (id)=> postApi.delete(`/like/${id}`)
+
+export const createComment = (body) => postApi.post('/comment', body)
