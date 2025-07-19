@@ -1,4 +1,3 @@
-import React from 'react'
 import { PhotoIcon2 } from '../icons'
 
 function AddPicture(props) {

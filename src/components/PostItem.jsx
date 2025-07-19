@@ -1,4 +1,3 @@
-import reactLogo from '../assets/react.svg'
 import Avatar from './Avatar'
 import { CloseIcon, LikeIcon, ThreeDotIcon } from '../icons'
 import useUserStore from '../stores/userStore'
@@ -8,10 +7,7 @@ import { toast } from 'react-toastify'
 import CommentContainer from './CommentContainer'
 
 function PostItem({ post }) {
-	// console.log(post)
 	const user = useUserStore(state => state.user)
-	const token = useUserStore(state => state.token)
-	const getAllPosts = usePostStore(state => state.getAllPosts)
 	const deletePost = usePostStore(state => state.deletePost)
 	const setCurrentPost = usePostStore(state => state.setCurrentPost)
 	const createLike = usePostStore(state=>state.createLike)

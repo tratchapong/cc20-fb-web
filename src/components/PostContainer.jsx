@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import CreatePost from './CreatePost'
 import PostItem from './PostItem'
 import usePostStore from '../stores/postStore'
-import useUserStore from '../stores/userStore'
 import PostFormEdit from './PostFormEdit'
 
 function PostContainer() {
@@ -10,7 +9,6 @@ function PostContainer() {
   const getAllPosts = usePostStore(state => state.getAllPosts)
   const setCurrentPost = usePostStore(state=>state.setCurrentPost)
   const currentPost = usePostStore(state=>state.currentPost)
-  // const token = useUserStore(state => state.token)
   const [loading, setLoading] = useState(false)
   
   useEffect(() => {

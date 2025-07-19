@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Avatar from './Avatar'
 import useUserStore from '../stores/userStore'
 import { SendMessageIcon } from '../icons'

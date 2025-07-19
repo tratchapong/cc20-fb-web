@@ -8,7 +8,6 @@ import { toast } from "react-toastify"
 
 function PostForm() {
 	const user = useUserStore(state => state.user)
-	const token = useUserStore(state => state.token)
 	const loading = usePostStore(state => state.loading)
 	const createPost = usePostStore(state => state.createPost)
 

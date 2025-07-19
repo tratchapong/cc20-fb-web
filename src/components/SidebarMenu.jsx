@@ -1,4 +1,3 @@
-import React from 'react'
 import useUserStore from '../stores/userStore'
 import MenuItem from './MenuItem'
 import { BookmarkIcon, ClockIcon, FriendsIcon, GroupIcon, MoreIcon, PlayIcon } from '../icons'

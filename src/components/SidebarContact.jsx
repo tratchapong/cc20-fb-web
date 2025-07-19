@@ -1,4 +1,3 @@
-import React from 'react'
 import { SearchIcon } from '../icons'
 import MenuItem from './MenuItem'
 import Avatar from './Avatar'
